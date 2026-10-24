@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this independent implementation, cite the software and the original papers listed in README.md."
+title: "Decision-Focused HVAC System Identification"
+type: software
+authors:
+  - family-names: Morgante
+    given-names: Guido
+version: 0.2.0
+repository-code: "https://github.com/GuidoM88/decision-focused-hvac-system-identification"
+license: MIT
+keywords:
+  - decision-focused learning
+  - system identification
+  - HVAC
+  - differentiable optimization
+  - mixed-integer programming

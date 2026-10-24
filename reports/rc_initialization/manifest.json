@@ -1,0 +1,14 @@
+{
+  "scope": "synthetic one-zone RC diagnostic; not EnergyPlus",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "horizon": 8,
+  "epochs": 8,
+  "learning_rate": 0.0001,
+  "perturbation": "relative Gaussian, divisor 25",
+  "checkpoint": "minimum validation hierarchical power loss, including epoch -1 warm start",
+  "baseline_difference": "original benchmark selects among trained epochs only; this diagnostic also permits rollback"
+}

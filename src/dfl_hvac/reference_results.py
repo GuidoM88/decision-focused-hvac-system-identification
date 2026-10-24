@@ -1,0 +1,91 @@
+"""Numerical targets transcribed from Tables 1 and 2 of Paper 1."""
+
+TABLE_1 = {
+    "ito": {
+        "train": {
+            "hierarchical_loss": 655,
+            "mae_kw": 2.68,
+            "mse_kw2": 16.8,
+            "error_mean_kw": -1.85,
+            "error_std_kw": 2.34,
+            "expected_cost_eur": 82,
+            "ex_post_cost_eur": 478,
+            "cost_error_eur": 395,
+        },
+        "validation": {
+            "hierarchical_loss": 646,
+            "mae_kw": 2.62,
+            "mse_kw2": 16.6,
+            "error_mean_kw": -1.86,
+            "error_std_kw": 2.28,
+            "expected_cost_eur": 75,
+            "ex_post_cost_eur": 474,
+            "cost_error_eur": 398,
+        },
+        "test": {
+            "hierarchical_loss": 652,
+            "mae_kw": 2.66,
+            "mse_kw2": 16.7,
+            "error_mean_kw": -1.81,
+            "error_std_kw": 2.39,
+            "expected_cost_eur": 85,
+            "ex_post_cost_eur": 474,
+            "cost_error_eur": 389,
+        },
+    },
+    "dfl": {
+        "train": {
+            "hierarchical_loss": 252,
+            "mae_kw": 2.93,
+            "mse_kw2": 15.4,
+            "error_mean_kw": 0.15,
+            "error_std_kw": 2.35,
+            "expected_cost_eur": 454,
+            "ex_post_cost_eur": 456,
+            "cost_error_eur": 2,
+        },
+        "validation": {
+            "hierarchical_loss": 248,
+            "mae_kw": 2.87,
+            "mse_kw2": 14.6,
+            "error_mean_kw": 0.12,
+            "error_std_kw": 2.27,
+            "expected_cost_eur": 446,
+            "ex_post_cost_eur": 455,
+            "cost_error_eur": 8,
+        },
+        "test": {
+            "hierarchical_loss": 253,
+            "mae_kw": 2.94,
+            "mse_kw2": 15.6,
+            "error_mean_kw": 0.08,
+            "error_std_kw": 2.38,
+            "expected_cost_eur": 452,
+            "ex_post_cost_eur": 468,
+            "cost_error_eur": 16,
+        },
+    },
+}
+
+TABLE_2_HOT_YEAR = {
+    "ito": {
+        "hierarchical_loss": 685,
+        "mae_kw": 2.76,
+        "mse_kw2": 18.3,
+        "error_mean_kw": -1.96,
+        "error_std_kw": 2.39,
+        "expected_cost_eur": 79,
+        "ex_post_cost_eur": 500,
+        "cost_error_eur": 420,
+    },
+    "dfl": {
+        "hierarchical_loss": 271,
+        "mae_kw": 2.95,
+        "mse_kw2": 15.8,
+        "error_mean_kw": 0.10,
+        "error_std_kw": 2.39,
+        "expected_cost_eur": 467,
+        "ex_post_cost_eur": 482,
+        "cost_error_eur": 15,
+    },
+}

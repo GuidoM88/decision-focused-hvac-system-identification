@@ -1,0 +1,210 @@
+[
+  {
+    "day": "2017-04-11",
+    "split": "validation",
+    "value": 21.444319580663887,
+    "status": "timelimit",
+    "gap": 0.9710025234368554,
+    "fallback": false
+  },
+  {
+    "day": "2017-10-10",
+    "split": "validation",
+    "value": 25.33193091959119,
+    "status": "timelimit",
+    "gap": 0.9847089094349197,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 33.74173126158861,
+    "status": "timelimit",
+    "gap": 0.29919918354605396,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 33.21703060454999,
+    "status": "timelimit",
+    "gap": 0.38626754670793,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 40.5534851591734,
+    "status": "timelimit",
+    "gap": 0.8192186349612284,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 44.516724633860576,
+    "status": "timelimit",
+    "gap": 3.1266993820291744,
+    "fallback": false
+  },
+  {
+    "day": "2017-04-11",
+    "split": "validation",
+    "value": 21.427621740737912,
+    "status": "timelimit",
+    "gap": 1.005508803472869,
+    "fallback": false
+  },
+  {
+    "day": "2017-10-10",
+    "split": "validation",
+    "value": 25.66284188802425,
+    "status": "timelimit",
+    "gap": 1.0319945286820933,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 33.41004058653446,
+    "status": "timelimit",
+    "gap": 0.40844127565967914,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 33.651924404469604,
+    "status": "timelimit",
+    "gap": 0.22516060918316166,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 40.08638667354549,
+    "status": "timelimit",
+    "gap": 0.47452569402192746,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 40.04889250877387,
+    "status": "timelimit",
+    "gap": 0.8390052257448022,
+    "fallback": false
+  },
+  {
+    "day": "2017-04-11",
+    "split": "validation",
+    "value": 21.190471017895145,
+    "status": "timelimit",
+    "gap": 0.35936114563201016,
+    "fallback": false
+  },
+  {
+    "day": "2017-10-10",
+    "split": "validation",
+    "value": 24.573310211635675,
+    "status": "timelimit",
+    "gap": 0.8898654909137376,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 33.8469289621498,
+    "status": "timelimit",
+    "gap": 0.34077863383198365,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 34.08346721888984,
+    "status": "timelimit",
+    "gap": 0.3112403089257355,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 43.62629754680106,
+    "status": "timelimit",
+    "gap": 0.9264415971665417,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 43.33210053696559,
+    "status": "timelimit",
+    "gap": 2.226574614688192,
+    "fallback": false
+  },
+  {
+    "day": "2017-04-11",
+    "split": "validation",
+    "value": 20.94836214219308,
+    "status": "timelimit",
+    "gap": 0.7012629044811385,
+    "fallback": false
+  },
+  {
+    "day": "2017-10-10",
+    "split": "validation",
+    "value": 25.32474250964256,
+    "status": "timelimit",
+    "gap": 0.90156246030024,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 33.59415000884421,
+    "status": "timelimit",
+    "gap": 0.3735771117350299,
+    "fallback": false
+  },
+  {
+    "day": "2017-01-10",
+    "split": "train",
+    "value": 34.043598635220256,
+    "status": "timelimit",
+    "gap": 0.22453748073045338,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 41.813136674482806,
+    "status": "timelimit",
+    "gap": 1.450729148085649,
+    "fallback": false
+  },
+  {
+    "day": "2017-07-11",
+    "split": "train",
+    "value": 71.08444900261279,
+    "status": "timelimit",
+    "gap": 7.733650042252343,
+    "fallback": false
+  },
+  {
+    "day": "2017-04-11",
+    "split": "validation",
+    "value": 22.2180899386124,
+    "status": "timelimit",
+    "gap": 0.21880110731774846,
+    "fallback": false
+  },
+  {
+    "day": "2017-10-10",
+    "split": "validation",
+    "value": 24.944355208976447,
+    "status": "timelimit",
+    "gap": 0.613153276383711,
+    "fallback": false
+  }
+]

@@ -1,0 +1,56 @@
+paper:
+  arxiv: "2501.14708"
+  horizon_hours: 24
+  n_zones: 15
+  n_floors: 3
+  zones_per_floor: 5
+  target_temperature_c: 21.0
+
+tariff:
+  off_peak_eur_per_kwh: 0.3
+  peak_eur_per_kwh: 0.6
+  peak_start_hour: 6
+  peak_end_hour: 19
+
+representative_days:
+  n_clusters: 10
+  fixed_extremes:
+    - coldest_daily_mean
+    - hottest_daily_mean
+    - highest_daily_variance
+  random_restarts: 100
+  split_seed: 42
+
+ito:
+  validation_fraction: 0.2
+  batch_size: 64
+  max_epochs: 500
+  patience: 20
+  learning_rate: 0.01
+
+dfl:
+  learning_rate: 0.001
+  polynomial_decay_power: 0.9
+  max_epochs: 50
+  patience: 10
+  parameter_noise_divisor: 25.0
+  solver: ECOS
+
+reconstruction_defaults:
+  source: "authors_followup_repository"
+  demand_charge_eur_per_kw: 0.4
+  import_capacity_kw: 10000.0
+  comfort_schedule:
+    - start_hour: 0
+      end_hour: 8
+      weight: 0.1
+    - start_hour: 8
+      end_hour: 19
+      weight: 1.0
+    - start_hour: 19
+      end_hour: 24
+      weight: 0.3
+
+notes:
+  - "ITO optimizer defaults, RC initialization, demand charge, import capacity and comfort-weight schedule are reconstruction choices informed by the authors' later public implementation; they are not specified numerically in Paper 1."
+  - "HVAC capacities, weather-file identities and the exact free-parameter structure of alpha remain unresolved."

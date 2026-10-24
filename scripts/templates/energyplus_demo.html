@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Decision-focused HVAC · EnergyPlus evidence</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#172f3d;background:#f2f5f4}*{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:38px 26px 55px}.eyebrow{letter-spacing:.13em;font-size:11px;font-weight:750;color:#087f78;text-transform:uppercase}h1{font-size:clamp(27px,4vw,44px);line-height:1.13;letter-spacing:-.035em;max-width:850px;margin:12px 0 14px}p{line-height:1.6;color:#526674;max-width:900px}.lead{font-size:16px}.badge{display:inline-block;padding:5px 9px;border:1px solid #c7dbd6;border-radius:5px;font-size:11px;margin-right:6px;background:#e7f0ed}.controls{display:flex;flex-wrap:wrap;gap:15px;margin:28px 0 16px;background:white;padding:18px 20px;border:1px solid #dce5e2;border-radius:10px}label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;flex:1;min-width:150px}select{display:block;width:100%;padding:10px 9px;margin-top:7px;background:#f9fbfa;color:#172f3d;border:1px solid #c8d6d2;border-radius:5px;font:600 13px system-ui}select:focus-visible{outline:3px solid #6cbcb5;outline-offset:2px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card,.plot,.table{background:white;border:1px solid #dce5e2;border-radius:10px;padding:18px}.card h2{font-size:12px;font-weight:600;margin:0 0 15px;color:#5a6c77}.numbers{display:flex;gap:22px;align-items:baseline}.numbers strong{font-size:27px;letter-spacing:-.04em}.numbers span{font-size:11px}.a{color:#087f78}.b{color:#b0652d}.legend{font-size:12px;margin:14px 0}.legend span{margin-right:20px}.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}.plot h2{font-size:14px;margin:0 0 4px}.plot p{font-size:11px;margin:0 0 9px}.plot svg{width:100%;display:block;overflow:visible}.notice{border-left:3px solid #087f78;padding:4px 15px;margin:23px 0;font-size:13px}.table{margin-top:22px;overflow:auto}.table h2{font-size:16px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{text-align:right;padding:11px 9px;border-bottom:1px solid #e5ece9;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{font-weight:650;color:#516673;font-size:11px}footer{font-size:12px;margin-top:25px;color:#526674}a{color:#087f78}svg text{font-family:system-ui;font-size:11px;fill:#526674}.footnote{font-size:11px;margin-top:10px}@media(max-width:680px){main{padding:25px 15px}.charts{grid-template-columns:1fr}.stats{gap:7px}.card{padding:12px}.numbers{gap:10px;flex-wrap:wrap}.numbers strong{font-size:22px}.numbers span{display:block}.controls{padding:15px}label{min-width:135px}}
+</style></head><body><main>
+<div class="eyebrow">Decision-focused HVAC · EnergyPlus control study</div>
+<h1>What happens when the learned model controls the building?</h1>
+<p class="lead">Inspect the same building under different controllers. Recorded EnergyPlus simulations: five zones, matched initial conditions, and electricity <em>and</em> gas accounted for.</p>
+<span class="badge">EnergyPlus 22.1</span><span class="badge">4 seasonal test days</span><span class="badge">8 controllers</span><span class="badge">Saved data · works offline</span>
+<div class="controls"><label>Evaluation day<select id="day"></select></label><label class="a">Controller A<select id="methodA"></select></label><label class="b">Controller B<select id="methodB"></select></label><label>Temperature zone<select id="zone"></select></label></div>
+<div class="stats" id="stats" aria-live="polite"></div><div class="legend"><span class="a" id="legendA"></span><span class="b" id="legendB"></span></div>
+<div class="charts">
+<section class="plot"><h2>Indoor temperature</h2><p>Hourly endpoint °C · shaded area: declared comfort band</p><div id="temperature"></div></section>
+<section class="plot"><h2>HVAC electricity</h2><p>Total across five zones · hourly mean kW</p><div id="electricity"></div></section>
+<section class="plot"><h2>Backup natural gas</h2><p>Total across five HVAC systems · kWh per hour</p><div id="gas"></div></section>
+<section class="plot"><h2>Shared weather & tariff</h2><p>Outdoor °C (gray, left) · electricity €/kWh (purple, right)</p><div id="weather"></div></section>
+</div>
+<div class="notice" id="solver" aria-live="polite"></div>
+<section class="table"><h2>All controllers · selected day</h2><table><thead><tr><th>Controller</th><th>Electricity kWh</th><th>Gas kWh</th><th>HVAC €</th><th>Comfort zone-°C·h</th><th>Solver gap</th></tr></thead><tbody id="rows"></tbody></table><p class="footnote">Comfort is integrated at 15-minute resolution across all zones; the chart shows hourly temperatures for one zone. Lower cost with worse comfort is a tradeoff. Fixed-21 requests 21 °C all day. Scheduled requests 21 °C at 08:00–18:00 and 18 °C otherwise, with a narrow ±0.05 °C heating/cooling deadband: it can actively cool overnight and is not a conventional wide-deadband setback.</p></section>
+<footer><strong>Scope matters.</strong> A four-day, one-seed pilot with a ten-second neural solver budget and four DFL epochs. This is neither annual savings nor a full reproduction of the paper tables. Gas is priced at an illustrative €0.10/kWh; PV, non-HVAC loads and fixed fees are excluded. Native warnings and all solver gaps remain in the report.<br><br><a href="README.md">Measured report</a> · <a href="metrics.csv">Raw metrics</a> · <a href="protocol.json">Protocol</a> · <a href="https://github.com/GuidoM88/decision-focused-hvac-system-identification">Source repository</a></footer>
+</main><script type="application/json" id="data">__DATA__</script><script>
+"use strict";
+const data=JSON.parse(document.getElementById('data').textContent), $=id=>document.getElementById(id),ca='#087f78',cb='#b0652d',fmt=(x,d=2)=>Number(x).toFixed(d);
+function options(id,items,value){$(id).replaceChildren(...items.map(s=>{let o=document.createElement('option');o.value=s;o.textContent=s.replaceAll('_',' ');return o}));$(id).value=value;$(id).addEventListener('change',render)}
+options('day',data.days,'2017-07-18');options('methodA',data.methods,'NN5-SS');options('methodB',data.methods,'NN5-ITO');options('zone',data.zones,'Core_ZN');
+function chart(id,series,{band=false,zero=false,right=false}={}){
+ const W=520,H=228,L=43,R=right?48:14,T=13,B=31,w=W-L-R,h=H-T-B;
+ let vals=series.filter(s=>!s.right).flatMap(s=>s.values),lo=Math.min(...vals,...(band?[18]:[])),hi=Math.max(...vals,...(band?[26]:[]));
+ if(zero)lo=0;const margin=Math.max((hi-lo)*.12,.15);hi+=margin;if(!zero)lo-=margin;
+ const px=i=>L+(i+(id==='temperature'?1:.5))/24*w,py=v=>T+h-(v-lo)/(hi-lo)*h,ry=v=>T+h-v/.8*h;
+ let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${id} for the selected day and controllers"><title>${id} · hourly values</title>`;
+ if(band)for(let i=0;i<24;i++){let low=i>=8&&i<18?20:18,high=i>=8&&i<18?24:26;svg+=`<rect x="${L+i/24*w}" y="${py(high)}" width="${w/24+.2}" height="${py(low)-py(high)}" fill="#edf2ef"/>`}
+ for(let k=0;k<5;k++){const v=lo+k/4*(hi-lo),y=py(v);svg+=`<line x1="${L}" y1="${y}" x2="${L+w}" y2="${y}" stroke="#dfe7e4"/><text x="${L-7}" y="${y+3}" text-anchor="end">${fmt(v,1)}</text>`;if(right)svg+=`<text x="${L+w+8}" y="${T+h-k*h/4+3}">${fmt(k*.2,2)}</text>`}
+ for(let i=0;i<=24;i+=6)svg+=`<text x="${L+i*w/24}" y="${H-11}" text-anchor="middle">${String(i).padStart(2,'0')}:00</text>`;
+ for(const s of series){const y=s.right?ry:py;svg+=`<polyline points="${s.values.map((v,i)=>`${px(i)},${y(v)}`).join(' ')}" stroke="${s.color}" fill="none" stroke-width="2.3"/>`;s.values.forEach((v,i)=>svg+=`<circle cx="${px(i)}" cy="${y(v)}" r="2.2" fill="${s.color}"><title>${s.label} · ${i}:00–${i+1}:00: ${fmt(v,3)}</title></circle>`)}
+ $(id).innerHTML=svg+'</svg>';
+}
+function render(){
+ const day=$('day').value,A=$('methodA').value,B=$('methodB').value,zone=$('zone').value;
+ const metrics=data.metrics.filter(r=>r.day===day),a=metrics.find(r=>r.method===A),b=metrics.find(r=>r.method===B);
+ const series=m=>{let rows=data.hourly.filter(r=>r.day===day&&r.method===m);return{temperature:Array.from({length:24},(_,h)=>rows.find(r=>r.hour===h&&r.zone===zone).temperature_end_c),electricity:Array.from({length:24},(_,h)=>rows.filter(r=>r.hour===h).reduce((s,r)=>s+r.electricity_kwh,0)),gas:Array.from({length:24},(_,h)=>rows.filter(r=>r.hour===h).reduce((s,r)=>s+r.gas_kwh,0)),ambient:rows.filter(r=>r.zone===zone).map(r=>r.ambient_c),price:rows.filter(r=>r.zone===zone).map(r=>r.price_eur_per_kwh)}};
+ const sa=series(A),sb=series(B);
+ $('stats').innerHTML=[['HVAC bill · illustrative €','hvac_bill_eur'],['Electricity · kWh','electricity_kwh'],['Comfort · zone-°C·h','comfort_zone_degree_hours']].map(([label,key])=>`<section class="card"><h2>${label}</h2><div class="numbers"><div class="a"><strong>${fmt(a[key])}</strong> <span>A</span></div><div class="b"><strong>${fmt(b[key])}</strong> <span>B</span></div></div></section>`).join('');
+ $('legendA').textContent='● A · '+A;$('legendB').textContent='● B · '+B;
+ for(const id of ['temperature','electricity','gas'])chart(id,[{values:sa[id],color:ca,label:A},{values:sb[id],color:cb,label:B}],{band:id==='temperature',zero:id!=='temperature'});
+ chart('weather',[{values:sa.ambient,color:'#526076',label:'Outdoor °C'},{values:sa.price,color:'#8865a4',label:'Tariff €/kWh',right:true}],{right:true});
+ const status=r=>r.solver_status==='reference'?'thermostat reference':`${r.solver_status}; gap ${r.solver_gap===null?'unavailable':fmt(r.solver_gap*100,2)+'%'}${r.fallback?' · fallback applied':''}`;
+ $('solver').textContent=`Optimization evidence — A: ${status(a)}. B: ${status(b)}. A time limit leaves uncertainty about optimality, even when the schedule is feasible.`;
+ $('rows').innerHTML=data.methods.map(m=>{let r=metrics.find(v=>v.method===m);return`<tr><td>${m}</td><td>${fmt(r.electricity_kwh)}</td><td>${fmt(r.gas_kwh)}</td><td>${fmt(r.hvac_bill_eur)}</td><td>${fmt(r.comfort_zone_degree_hours)}</td><td>${r.solver_gap===null?'—':fmt(r.solver_gap*100,2)+'%'}</td></tr>`}).join('');
+}
+render();
+</script></body></html>

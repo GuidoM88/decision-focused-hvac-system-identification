@@ -1,0 +1,23 @@
+paper:
+  arxiv: '2506.19717v2'
+  controlled_zones: 5
+  horizon_hours: 24
+  hidden_widths: [2, 5, 10]
+  nn_input_convention: 'temperatures, signed HVAC kW, ambient'
+  implementation_source: 'PSMRB/dfl_hvac_management@656589444a66819f2338632b6a9931f867f954b0'
+ss:
+  learning_rate: 0.001
+  exponential_decay: 0.98
+  max_epochs: 100
+  patience: 15
+  sigma: 0.01
+  samples: 1
+reconstruction:
+  solver: SCIP
+  interval_padding_relative: 1.0e-10
+  input_scaling: training_only_standardization
+  state_time_convention: 'T decisions, T+1 states, comfort on states 1..T'
+  tied_peak_rule: first_maximum
+notes:
+  - 'This is a reference specification; executed benchmark CLI settings are in its manifest.'
+  - 'Paper tables are not claimed as numerically reproduced.'

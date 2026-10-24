@@ -1,0 +1,32 @@
+{
+  "scope": "optimization-only ablation on publicly trained networks",
+  "temperature_domain": [
+    10,
+    35
+  ],
+  "hvac_capacity_kw": 3,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "widths": [
+    2,
+    5
+  ],
+  "horizons": [
+    6,
+    12,
+    24
+  ],
+  "time_limit": 5.0,
+  "means_c": [
+    5,
+    20,
+    32
+  ],
+  "same_domain_and_objective": true,
+  "mode_order": "deterministically randomized within each paired instance",
+  "runtime_note": "one timing per instance on a shared machine, alongside other experiments; not a controlled speed benchmark",
+  "equivalence_tolerance": "absolute objective difference <= 1e-3 * max(1, |baseline|)"
+}

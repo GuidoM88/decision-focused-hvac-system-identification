@@ -1,0 +1,13 @@
+name: dfl-hvac
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - pyyaml
+  - cvxpy
+  - pip:
+      - -e ".[dev,research,miqp,plots]"

@@ -1,0 +1,40 @@
+{
+  "scope": "synthetic methodological benchmark; no EnergyPlus table claim",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "epochs": 8,
+  "pretrain_epochs": 250,
+  "horizon": 8,
+  "zones": 1,
+  "ss_samples_per_update": 2,
+  "sigma": 0.01,
+  "test_selection": "predeclared days, never used for checkpoint selection",
+  "stress": "test ambient +4 C; separate from Paper 1 hot-year construction",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "versions": {
+    "numpy": "2.5.4",
+    "torch": "2.14.1+cpu",
+    "cvxpy": "1.9.3",
+    "cvxpylayers": "1.2.0",
+    "pyscipopt": "6.3.0"
+  },
+  "completed_seeds": [
+    0,
+    1,
+    2
+  ],
+  "skip_surrogates": false,
+  "execution_shards": [
+    [
+      0
+    ],
+    [
+      1,
+      2
+    ]
+  ]
+}

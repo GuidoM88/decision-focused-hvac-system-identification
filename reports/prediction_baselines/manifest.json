@@ -1,0 +1,89 @@
+{
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/PSMRB/dfl_hvac_management/656589444a66819f2338632b6a9931f867f954b0/data/SmallOffice/Output-6zones_ASHRAE901_OfficeSmall_STD2022_Denver_1991-2020/Datasets/OutputVariablesTraining.csv",
+      "author_commit": "656589444a66819f2338632b6a9931f867f954b0",
+      "git_blob_sha1": "53bf2baf4598c837793dbde3b49c1b7c51a06472",
+      "sha256": "0d37533a343582584dd39f78a0e0cf743950d1f504b3ac9c54556f7564b6521f",
+      "bytes": 6552034
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PSMRB/dfl_hvac_management/656589444a66819f2338632b6a9931f867f954b0/data/SmallOffice/Output-6zones_ASHRAE901_OfficeSmall_STD2022_Denver_2006-2020/Datasets/OutputVariablesTraining.csv",
+      "author_commit": "656589444a66819f2338632b6a9931f867f954b0",
+      "git_blob_sha1": "a9791baaf5d38732e024da2a2725b770a0f7311f",
+      "sha256": "cfb6e425986b5f7239e2bbbbb4e01ba3b2914faea81e868164a173831efa1cdd",
+      "bytes": 6558185
+    }
+  ],
+  "scope": "one-step prediction; deterministic fits; same public-data masks and units as neural study",
+  "training_rows": 7059,
+  "validation_rows": 1680,
+  "test_rows": 8759,
+  "disjoint_rows": 8692,
+  "selection": {
+    "ARX-Ridge": {
+      "selected": {
+        "penalty": 0.0001,
+        "validation_mse": 0.21844835289996462
+      },
+      "candidates": [
+        {
+          "penalty": 0.0,
+          "validation_mse": 0.2184585186060188
+        },
+        {
+          "penalty": 0.0001,
+          "validation_mse": 0.21844835289996462
+        },
+        {
+          "penalty": 0.001,
+          "validation_mse": 0.21861828834061525
+        },
+        {
+          "penalty": 0.01,
+          "validation_mse": 0.2304604556889767
+        },
+        {
+          "penalty": 0.1,
+          "validation_mse": 0.31594756309176275
+        },
+        {
+          "penalty": 1.0,
+          "validation_mse": 0.6177948770678261
+        },
+        {
+          "penalty": 10.0,
+          "validation_mse": 3.0735830212079747
+        }
+      ]
+    },
+    "Passive-RC": {
+      "selected": {
+        "penalty": 0.0,
+        "validation_mse": 0.24917704216376813
+      },
+      "candidates": [
+        {
+          "penalty": 0.0,
+          "validation_mse": 0.24917704216376813
+        },
+        {
+          "penalty": 0.0001,
+          "validation_mse": 0.2491825512764602
+        },
+        {
+          "penalty": 0.001,
+          "validation_mse": 0.24925909531294477
+        },
+        {
+          "penalty": 0.01,
+          "validation_mse": 0.251790309532733
+        },
+        {
+          "penalty": 0.1,
+          "validation_mse": 0.28490303380876886
+        }
+      ]
+    }
+  }
+}
